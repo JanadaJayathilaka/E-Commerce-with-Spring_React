@@ -2,10 +2,7 @@ package com.janada.ecomProject.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,9 +24,36 @@ public class Product {
     private BigDecimal price;
     private String category;
     private Date releaseDate;
-    private boolean available;
-    private int quantity;
+    private boolean productAvailable;
+    private int stockQuantity;
+    private  String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageDate;
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageDate() {
+        return imageDate;
+    }
+
+    public void setImageDate(byte[] imageDate) {
+        this.imageDate = imageDate;
+    }
 
     public int getId() {
         return id;
@@ -87,19 +111,19 @@ public class Product {
         this.releaseDate = releaseDate;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public boolean isProductAvailable() {
+        return productAvailable;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setProductAvailable(boolean productAvailable) {
+        this.productAvailable = productAvailable;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 }
