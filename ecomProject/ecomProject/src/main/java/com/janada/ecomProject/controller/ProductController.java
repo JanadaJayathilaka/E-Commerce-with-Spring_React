@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin("*")
 public class ProductController {
 
     @Autowired
@@ -75,7 +75,7 @@ public class ProductController {
 
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/products/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable int id){
         Product product = productService.getProductById(id);
         if(product!= null){
@@ -86,6 +86,13 @@ public class ProductController {
             return  new ResponseEntity<>("Product not found",HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword){
+        System.out.println("searching with "+keyword);
+        List<Product> products =productService.searchProduct(keyword);
+        return new ResponseEntity<>(products,HttpStatus.OK);
     }
 
 
